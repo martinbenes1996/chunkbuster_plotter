@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+    plotter:
+        build: .
+        container_name: plotter
+        command: python index.py
+        volumes:
+            - ./src:/usr/src/app
+            - ./figs:/usr/src/app/figs
+        ports:
+            - "8080:3000"
+        environment:
+            DATABASE_URL: "mongodb://scraper_db:27017/"
+
+networks:
+    default:
+        external:
+            name: chunkbuster
